@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.afollestad.assent.Assent;
+import com.afollestad.bridge.BridgeException;
 import com.afollestad.pifeeder.R;
 import com.afollestad.pifeeder.ui.base.BaseActivity;
 import com.afollestad.pifeeder.util.AppUtils;
@@ -64,6 +65,13 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(MainActivity.this, R.string.please_login_again, Toast.LENGTH_SHORT).show();
             didClickLogout();
             return;
+        } else if (t instanceof BridgeException) {
+            BridgeException e = (BridgeException) t;
+            if (e.response() != null && e.response().code() == 401) {
+                Toast.makeText(MainActivity.this, R.string.please_login_again, Toast.LENGTH_SHORT).show();
+                didClickLogout();
+                return;
+            }
         }
         super.handleError(t);
     }
