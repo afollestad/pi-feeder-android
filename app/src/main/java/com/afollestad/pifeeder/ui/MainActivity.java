@@ -5,16 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.afollestad.assent.Assent;
 import com.afollestad.pifeeder.R;
 import com.afollestad.pifeeder.ui.base.BaseActivity;
-import com.afollestad.pifeeder.util.Util;
+import com.afollestad.pifeeder.util.AppUtils;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.ConnectException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,10 +35,19 @@ public class MainActivity extends BaseActivity {
     Unbinder unbinder;
     boolean smsOn;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    private boolean verifyWifi() {
+        if (!AppUtils.isWifiConnected(this)) {
+            ErrorActivity.showForNoWifi(this);
+            finish();
+            return true;
+        }
+        return false;
+    }
+
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (verifyWifi()) return;
 
         if (!Hawk.contains(KEY_TOKEN)) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -46,7 +58,18 @@ public class MainActivity extends BaseActivity {
         unbinder = ButterKnife.bind(this);
     }
 
+    @Override protected void handleError(Throwable t) {
+        if (t.getCause() instanceof ConnectException &&
+                AppUtils.isWifiConnected(MainActivity.this)) {
+            Toast.makeText(MainActivity.this, R.string.please_login_again, Toast.LENGTH_SHORT).show();
+            didClickLogout();
+            return;
+        }
+        super.handleError(t);
+    }
+
     private void refreshMobileConfig(boolean verifiedPermission) {
+        if (verifyWifi()) return;
         if (!Assent.isPermissionGranted(Assent.READ_PHONE_STATE)) {
             if (verifiedPermission) {
                 handleError(new Exception("Access to your phone state is required in order to get your phone number!"));
@@ -63,11 +86,13 @@ public class MainActivity extends BaseActivity {
         get("/mobile_config").asJsonObject((response, object, e) -> {
             if (e != null) {
                 handleError(e);
+                smsNotificationsBtn.setText(R.string.load_config_error_retry);
+                smsNotificationsBtn.setEnabled(true);
                 return;
             }
 
             //noinspection MissingPermission
-            final String phoneNumber = Util.getPhoneNumber(this);
+            final String phoneNumber = AppUtils.getPhoneNumber(this);
             final JSONArray phonesAry = object.optJSONArray("phones");
 
             if (phonesAry != null) {
@@ -101,8 +126,8 @@ public class MainActivity extends BaseActivity {
         activateNowBtn.setEnabled(false);
         post("/activate").asJsonObject((response, object, e) -> {
             if (e != null) {
-                activateNowBtn.setEnabled(true);
                 handleError(e);
+                activateNowBtn.setEnabled(true);
                 return;
             }
             long duration;
@@ -127,7 +152,7 @@ public class MainActivity extends BaseActivity {
         JSONObject json = new JSONObject();
         try {
             //noinspection MissingPermission
-            json.put("phone", Util.getPhoneNumber(this));
+            json.put("phone", AppUtils.getPhoneNumber(this));
             json.put("remove", smsOn);
         } catch (JSONException e) {
             handleError(e);

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="@dimen/content_inset">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-32dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.3"
+        android:textSize="@dimen/title_text_size"
+        tools:text="No Wifi connection!"/>
+
+    <LinearLayout
+        android:id="@+id/status_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_inset"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/status_progress"
+            style="?android:progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/content_inset_half"/>
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:textSize="@dimen/body_text_size"
+            tools:text="Waiting for connection..."/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/retry_button"
+        style="?borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/content_inset"
+        android:text="@string/retry"
+        android:textColor="@color/borderless_button_text_selector"
+        android:textSize="@dimen/larger_text_size"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/logout_button"
+        style="?borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/body_text_size"
+        android:text="@string/logout"
+        android:textColor="@color/borderless_button_text_selector"
+        android:textSize="@dimen/larger_text_size"
+        android:visibility="gone"/>
+
+</LinearLayout>

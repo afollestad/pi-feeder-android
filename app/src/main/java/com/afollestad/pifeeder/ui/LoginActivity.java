@@ -14,6 +14,7 @@ import com.afollestad.bridge.Bridge;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.pifeeder.R;
 import com.afollestad.pifeeder.ui.base.BaseActivity;
+import com.afollestad.pifeeder.util.AppUtils;
 import com.afollestad.pifeeder.util.FormAutoValidator;
 import com.afollestad.udpdiscovery.Discovery;
 import com.afollestad.udpdiscovery.Entity;
@@ -69,6 +70,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if (!AppUtils.isWifiConnected(this)) {
+            ErrorActivity.showForNoWifi(this);
+            finish();
+            return;
+        }
+
         unbinder = ButterKnife.bind(this);
         autoValidator = new FormAutoValidator(buttonLogin, inputUsername, inputPassword) {
             @Override public void onValidityChange(boolean valid) {

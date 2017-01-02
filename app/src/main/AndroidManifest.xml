@@ -32,6 +32,10 @@
             android:name=".ui.LoginActivity"
             android:label="@string/login"/>
 
+        <activity
+            android:name=".ui.ErrorActivity"
+            android:label="@string/error"/>
+
     </application>
 
 </manifest>

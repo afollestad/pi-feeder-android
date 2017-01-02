@@ -11,6 +11,15 @@
         android:paddingBottom="@dimen/content_inset"
         android:paddingTop="@dimen/content_inset_half">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/content_inset"
+            android:layout_marginTop="@dimen/content_inset_half"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/choose_discovered_device"
+            android:textSize="@dimen/body_text_size"/>
+
         <LinearLayout
             android:id="@+id/discovered_list"
             android:layout_width="match_parent"
@@ -36,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/content_inset"
+                android:layout_marginTop="@dimen/content_inset_half"
                 android:labelFor="@+id/input_username"
                 android:text="@string/username"/>
 

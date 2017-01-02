@@ -4,6 +4,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="error">Error</string>
+    <string name="load_config_error_retry">Failed to load config, retry</string>
     <string name="logging_in">Logging in…</string>
     <string name="activate_now">Activate Now</string>
     <string name="logout">Logout</string>
@@ -11,4 +12,13 @@
     <string name="turn_off_sms_notifications">Turn Off SMS Notifications</string>
     <string name="web_dashboard">Web Dashboard</string>
     <string name="loading_config">Loading config…</string>
+    <string name="retry">Retry</string>
+    <string name="no_wifi_connection">No wifi connection! Wifi is needed to find your feeder.</string>
+    <string name="waiting_for_wifi">Waiting for wifi connection…</string>
+    <string name="verifying_connection">Verifying connection</string>
+    <string name="contacting_feeder">Contacting your feeder…</string>
+    <string name="failed_verify">Failed to verify your connection!</string>
+    <string name="verified_connection_refused">We were unable to connect to your feeder, its IP address may have changed.</string>
+    <string name="choose_discovered_device">First, choose a device from the list:</string>
+    <string name="please_login_again">Please login again</string>
 </resources>
