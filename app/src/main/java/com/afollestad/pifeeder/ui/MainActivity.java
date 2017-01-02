@@ -123,6 +123,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick(R.id.button_activate_now) public void didClickActivateNow() {
+        if (verifyWifi()) return;
         activateNowBtn.setEnabled(false);
         post("/activate").asJsonObject((response, object, e) -> {
             if (e != null) {
@@ -143,6 +144,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick(R.id.button_sms_notifications) public void didClickSmsNotifications() {
+        if (verifyWifi()) return;
         if (!Assent.isPermissionGranted(Assent.READ_PHONE_STATE)) {
             handleError(new Exception("Access to your phone state is required in order to get your phone number!"));
             return;
@@ -172,6 +174,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick(R.id.button_dashboard) public void didClickDashboard() {
+        if (verifyWifi()) return;
         startActivity(new Intent(Intent.ACTION_VIEW)
                 .setData(Uri.parse("http://" + Hawk.get(KEY_TARGET_IP))));
     }
