@@ -1,0 +1,10 @@
+<resources>
+
+    <dimen name="content_inset">16dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="body_text_size">16sp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="smaller_text_size">14sp</dimen>
+    <dimen name="content_inset_half">8dp</dimen>
+
+</resources>

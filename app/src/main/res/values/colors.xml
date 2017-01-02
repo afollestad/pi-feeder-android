@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimaryLight">#78909C</color>
+    <color name="colorPrimary">#546E7A</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#C0CA33</color>
+
+    <color name="activated_bg">#409E9E9E</color>
+    <color name="divider_color">#E0E0E0</color>
+
+</resources>

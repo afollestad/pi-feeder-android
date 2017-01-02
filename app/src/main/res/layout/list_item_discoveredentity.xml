@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/button_height"
+              android:background="@drawable/discovered_item_bg_selector"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/content_inset"
+              android:paddingRight="@dimen/content_inset">
+
+    <ImageView
+        android:id="@+id/checked_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/content_inset_half"
+        android:background="@drawable/ic_radio_unfilled"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/body_text_size"
+        tools:text="Raspberry Pi"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/content_inset_half"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="1"
+        android:textSize="@dimen/smaller_text_size"
+        tools:text="192.168.86.26"/>
+
+</LinearLayout>
