@@ -125,8 +125,6 @@ public class ErrorActivity extends BaseActivity {
         retryBtn.setEnabled(false);
         retryRunnable = this::verifyConnection;
 
-        Bridge.config()
-                .host("http://192.168.86.249");
         get("/mobile_config").asJsonObject((response, object, e) -> {
             if (e != null) {
                 ViewUtil.show(logoutBtn);
