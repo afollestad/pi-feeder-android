@@ -4,7 +4,7 @@ This is a basic mobile client for my [Pi Feeder project](https://github.com/afol
 
 This app is both a native experience (left), and a web experience (right):
 
-<img src="https://raw.githubusercontent.com/afollestad/pi-feeder-android/master/art/showcase.png" />
+<img src="https://raw.githubusercontent.com/afollestad/pi-feeder-android/master/showcase.png" />
 
 The native experience allows you to discover Pi Feeder devices on your network, login, and perform
 basic actions like manually activating the feeder and toggling SMS notifications. You can open the
