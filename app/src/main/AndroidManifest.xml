@@ -36,6 +36,11 @@
             android:name=".ui.ErrorActivity"
             android:label="@string/error"/>
 
+        <activity
+            android:name=".ui.WebActivity"
+            android:label="@string/dashboard"
+            android:theme="@style/AppTheme.Fullscreen"/>
+
     </application>
 
 </manifest>

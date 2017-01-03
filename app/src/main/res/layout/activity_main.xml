@@ -41,7 +41,7 @@
             android:layout_marginLeft="-4dp"
             android:layout_marginRight="-4dp"
             android:layout_marginTop="@dimen/content_inset"
-            android:text="@string/web_dashboard"/>
+            android:text="@string/dashboard"/>
 
         <View
             android:layout_width="match_parent"

@@ -1,7 +1,6 @@
 package com.afollestad.pifeeder.ui;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -193,8 +192,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.button_dashboard) public void didClickDashboard() {
         if (verifyWifi()) return;
-        startActivity(new Intent(Intent.ACTION_VIEW)
-                .setData(Uri.parse("http://" + Hawk.get(KEY_TARGET_IP))));
+        WebActivity.start(this, Hawk.get(KEY_TARGET_IP));
     }
 
     @OnClick(R.id.button_logout) public void didClickLogout() {
