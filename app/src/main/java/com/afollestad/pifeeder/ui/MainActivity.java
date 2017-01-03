@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity {
 
     Unbinder unbinder;
     boolean smsOn;
+    boolean retryLoadConfig;
 
     private boolean verifyWifi() {
         if (!AppUtils.isWifiConnected(this)) {
@@ -71,6 +72,8 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this, R.string.please_login_again, Toast.LENGTH_SHORT).show();
                 didClickLogout();
                 return;
+            } else if (e.reason() == BridgeException.REASON_REQUEST_TIMEOUT) {
+                t = new Exception("Your feeder took too long to respond! Please try again.");
             }
         }
         super.handleError(t);
@@ -88,6 +91,7 @@ public class MainActivity extends BaseActivity {
         }
 
         smsOn = false;
+        retryLoadConfig = false;
         smsNotificationsBtn.setEnabled(false);
         smsNotificationsBtn.setText(R.string.loading_config);
 
@@ -96,6 +100,7 @@ public class MainActivity extends BaseActivity {
                 handleError(e);
                 smsNotificationsBtn.setText(R.string.load_config_error_retry);
                 smsNotificationsBtn.setEnabled(true);
+                retryLoadConfig = true;
                 return;
             }
 
@@ -153,6 +158,11 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.button_sms_notifications) public void didClickSmsNotifications() {
         if (verifyWifi()) return;
+        if (retryLoadConfig) {
+            refreshMobileConfig(false);
+            return;
+        }
+
         if (!Assent.isPermissionGranted(Assent.READ_PHONE_STATE)) {
             handleError(new Exception("Access to your phone state is required in order to get your phone number!"));
             return;

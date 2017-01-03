@@ -18,17 +18,25 @@ import static com.afollestad.pifeeder.util.Constants.KEY_TOKEN;
  */
 public class BaseActivity extends AssentActivity {
 
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private void invalidateHeaders() {
         Bridge.config().defaultHeader("User-Agent", "Pi Feeder Android");
         if (Hawk.contains(KEY_TARGET_IP)) {
             String ip = Hawk.get(KEY_TARGET_IP);
             Bridge.config().host("http://" + ip);
         }
         if (Hawk.contains(KEY_TOKEN)) {
-            Bridge.config()
-                    .defaultHeader("token", Hawk.get(KEY_TOKEN));
+            Bridge.config().defaultHeader("token", Hawk.get(KEY_TOKEN));
         }
+    }
+
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        invalidateHeaders();
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        invalidateHeaders();
     }
 
     protected void handleError(Throwable t) {

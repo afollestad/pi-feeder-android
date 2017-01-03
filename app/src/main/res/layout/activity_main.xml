@@ -46,7 +46,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_marginTop="@dimen/content_inset"
+            android:layout_marginBottom="@dimen/content_inset_more"
+            android:layout_marginTop="@dimen/content_inset_more"
             android:background="@color/divider_color"/>
 
         <Button
@@ -56,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="-4dp"
             android:layout_marginRight="-4dp"
-            android:layout_marginTop="@dimen/content_inset"
             android:text="@string/logout"/>
 
     </LinearLayout>
