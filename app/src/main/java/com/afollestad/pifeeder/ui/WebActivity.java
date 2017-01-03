@@ -15,6 +15,9 @@ import android.widget.ProgressBar;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.pifeeder.R;
 import com.afollestad.pifeeder.ui.base.BaseActivity;
+import com.orhanobut.hawk.Hawk;
+
+import static com.afollestad.pifeeder.util.Constants.KEY_TOKEN;
 
 /**
  * @author Aidan Follestad (afollestad)
@@ -42,6 +45,7 @@ public class WebActivity extends BaseActivity {
         String url = getIntent().getStringExtra("url");
         if (!url.startsWith("http"))
             url = "http://" + url;
+        url += "?token=" + Hawk.get(KEY_TOKEN);
 
         WebView webView = (WebView) findViewById(R.id.webView);
         mProgress = (ProgressBar) findViewById(R.id.progress);
