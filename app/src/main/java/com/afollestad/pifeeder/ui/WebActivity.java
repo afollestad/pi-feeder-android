@@ -29,12 +29,7 @@ public class WebActivity extends BaseActivity {
                 .putExtra("url", url));
     }
 
-    public static void start(Activity context, String url, int rq) {
-        context.startActivityForResult(new Intent(context, WebActivity.class)
-                .putExtra("url", url), rq);
-    }
-
-    ProgressBar mProgress;
+    ProgressBar progress;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -48,7 +43,7 @@ public class WebActivity extends BaseActivity {
         url += "?token=" + Hawk.get(KEY_TOKEN);
 
         WebView webView = (WebView) findViewById(R.id.webView);
-        mProgress = (ProgressBar) findViewById(R.id.progress);
+        progress = (ProgressBar) findViewById(R.id.progress);
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUserAgentString("SkillFitness-Android");
@@ -56,16 +51,11 @@ public class WebActivity extends BaseActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url.contains("about:blank")) {
-                    setResult(RESULT_OK);
-                    finish();
-                    return true;
-                } else if (url.contains("about:close")) {
-                    setResult(RESULT_CANCELED);
+                if (url.contains("about:exit")) {
                     finish();
                     return true;
                 }
-                mProgress.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.VISIBLE);
                 view.clearView();
                 view.loadUrl(url);
                 return true;
@@ -74,7 +64,7 @@ public class WebActivity extends BaseActivity {
             @Override
             public void onPageCommitVisible(WebView view, String url) {
                 super.onPageCommitVisible(view, url);
-                mProgress.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
             }
 
             @Override

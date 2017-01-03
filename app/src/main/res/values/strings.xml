@@ -10,7 +10,7 @@
     <string name="logout">Logout</string>
     <string name="turn_on_sms_notifications">Turn On SMS Notifications</string>
     <string name="turn_off_sms_notifications">Turn Off SMS Notifications</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard">Web Dashboard</string>
     <string name="loading_config">Loading config…</string>
     <string name="retry">Retry</string>
     <string name="no_wifi_connection">No wifi connection! Wifi is needed to find your feeder.</string>
